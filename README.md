@@ -1,2 +1,2 @@
 # CA-1 Front-End
-Course
+Course Assignment 1 - Front End
