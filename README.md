@@ -1,4 +1,4 @@
-# CA-1 Back-End
+# CA-1 Front-End
 Course Assignment 1 - Front End
 
 *This project is meant as start code for projects and exercises given in Flow-1+2 (+3 using the security-branch) at http://cphbusiness.dk in the Study Program "AP degree in Computer Science"*
