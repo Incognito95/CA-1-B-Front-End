@@ -1,9 +1,13 @@
 package facades;
 
+import dtos.RenameMeDTO;
+import entities.Person;
 import utils.EMF_Creator;
 import entities.RenameMe;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -40,8 +44,8 @@ public class FacadeExampleTest {
         try {
             em.getTransaction().begin();
             em.createNamedQuery("RenameMe.deleteAllRows").executeUpdate();
-            em.persist(new RenameMe("Some txt", "More text"));
-            em.persist(new RenameMe("aaa", "bbb"));
+//            em.persist(new RenameMe("Some txt", "More text"));
+//            em.persist(new RenameMe("aaa", "bbb"));
 
             em.getTransaction().commit();
         } finally {
@@ -49,17 +53,48 @@ public class FacadeExampleTest {
         }
     }
 
-    @AfterEach
-    public void tearDown() {
-//        Remove any data after each test was run
-    }
-
-    // TODO: Delete or change this method 
     @Test
-    public void testAFacadeMethod() throws Exception {
-        assertEquals("admin", facade.getPerson(), "Expect firstname = Admin");
-//        assertEquals(2, facade.getRenameMeCount(), "Expects two rows in the database");
+    void getPersonTest() {
+        EntityManager em = emf.createEntityManager();
+        try{
+        Query q1 = em.createNativeQuery("SELECT * FROM person WHERE phone_number = ?");
+            List<RenameMeDTO> personList =  q1.getResultList();
+            System.out.println("this is the phone number: " + personList);
+        } finally {
+            System.out.println("Something went wrong...");
+            em.close();
+        }
     }
     
+//    @Test
+//    public Person createPersonTest(RenameMeDTO rm) {
+//
+//        EntityManager em = emf.createEntityManager();
+//        
+//        try{
+//        Query q1 = em.createNativeQuery("INSERT INTO person SET email = ?, first_name = ?, last_name = ?");
+//            List<RenameMeDTO> personList =  q1.getResultList();
+//        for (RenameMeDTO p: personList) {
+//            System.out.println("This is the number that belongs to this person: " + personList);
+//        } 
+//           
+//        } finally {
+//             em.close();
+//        }
+//        
+//        return null;
+//    }
+
+
+
+    @Test
+    public void testAFacadeMethod() throws Exception {
+        assertEquals("admin", facade.getPerson(123456), "Expect firstname = Admin");
+        assertEquals(2, facade.getPerson(123456));
+    }
+
+   
+
+
 
 }

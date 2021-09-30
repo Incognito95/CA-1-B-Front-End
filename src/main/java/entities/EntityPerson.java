@@ -3,45 +3,44 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dtos;
+package entities;
 
-import entities.RenameMe;
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
- * @author tha
+ * @author danielpedersen
  */
-public class RenameMeDTO {
+@Entity
+public class EntityPerson implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String email;
     private String firstName;
     private String lastName;
     private int phoneNumber;
-
-    public RenameMeDTO(int id, String email, String firstName, String lastName, int phoneNumber) {
-        this.id = id;
+    private List<Person> hobby;
+    
+    public EntityPerson(String email, String firstName, String lastName, int phoneNumber) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
     }
+    
 
+    public EntityPerson() {
+    }
     
     
-    public static List<RenameMeDTO> getDtos(List<RenameMe> rms){
-        List<RenameMeDTO> rmdtos = new ArrayList();
-//        rms.forEach(rm->rmdtos.add(new RenameMeDTO(rm)));
-        return rmdtos;
-    }
-
-
-    public RenameMeDTO(RenameMe rm) {
-        this.id = rm.getId();
-        this.phoneNumber = rm.getPhoneNumber();
-    }
-
     public int getId() {
         return id;
     }
@@ -82,12 +81,5 @@ public class RenameMeDTO {
         this.phoneNumber = phoneNumber;
     }
 
-    
-   
-    
-    
-    
-    
-    
     
 }

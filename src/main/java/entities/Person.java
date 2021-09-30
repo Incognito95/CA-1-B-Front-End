@@ -5,7 +5,29 @@ public class Person {
     private String email;
     private String firstName;
     private String lastName;
+    private int phoneNumber;
 
+    public Person(int id, String email, String firstName, String lastName, int phoneNumber) {
+        this.id = id;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+    
+    
+    
+    
+    
+      
     public int getId() {
         return id;
     }

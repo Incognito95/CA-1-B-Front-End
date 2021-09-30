@@ -18,7 +18,8 @@ public class Populator {
     public static void populate(){
         EntityManagerFactory emf = EMF_Creator.createEntityManagerFactory();
         FacadeExample fe = FacadeExample.getFacadeExample(emf);
-        fe.createPerson(new RenameMeDTO(new RenameMe("First 1", "Last 1")));
+//        fe.createPerson(new RenameMeDTO(new RenameMe("First 1", "Last 1")));
+        fe.getPerson(123456);
 //        fe.create(new RenameMeDTO(new RenameMe("First 2", "Last 2")));
 //        fe.create(new RenameMeDTO(new RenameMe("First 3", "Last 3")));
     }

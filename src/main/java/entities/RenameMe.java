@@ -15,8 +15,13 @@ public class RenameMe implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
+        private int id;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private int phoneNumber;
+
+   
     public RenameMe() {
     }  
     
@@ -25,34 +30,54 @@ public class RenameMe implements Serializable {
     private String dummyStr1;
     private String dummyStr2;
 
-    public RenameMe(String dummyStr1, String dummyStr2) {
-        this.dummyStr1 = dummyStr1;
-        this.dummyStr2 = dummyStr2;
+    public RenameMe(int id, String email, String firstName, String lastName, int phoneNumber) {
+        this.id = id;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
-    
-    public String getDummyStr1() {
-        return dummyStr1;
+
+    public String getEmail() {
+        return email;
     }
 
-    public void setDummyStr1(String dummyStr1) {
-        this.dummyStr1 = dummyStr1;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getDummyStr2() {
-        return dummyStr2;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setDummyStr2(String dummyStr2) {
-        this.dummyStr2 = dummyStr2;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     
     
     
