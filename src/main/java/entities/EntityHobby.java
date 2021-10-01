@@ -6,6 +6,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,33 +18,36 @@ import javax.persistence.Id;
  * @author danielpedersen
  */
 @Entity
-public class EntityPerson implements Serializable {
-
+public class EntityHobby implements Serializable {    
+    
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String email;
-    private String firstName;
-    private String lastName;
-    private int phoneNumber;
-    private List<Hobby> hobby;
-    
-    public EntityPerson(String email, String firstName, String lastName, int phoneNumber) {
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
+    private String name;
+    private String description;
+    List<Person> persons;
+
+    public EntityHobby() {
     }
 
-    public EntityPerson() {
+    
+    public EntityHobby(String name) {
+        this.name = name;
+        this.persons = new ArrayList<>();
     }
 
-    public EntityPerson(List<Hobby> hobby) {
-        this.hobby = hobby;
-    }
+    
+
+  
     
     
     
+
+    
+    
+
+   
     
 }

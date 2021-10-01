@@ -4,6 +4,7 @@ import dtos.RenameMeDTO;
 import entities.Person;
 import utils.EMF_Creator;
 import entities.RenameMe;
+import static facades.FacadeExample.getFacadeExample;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -52,49 +53,159 @@ public class FacadeExampleTest {
             em.close();
         }
     }
-
+    
     @Test
-    void getPersonTest() {
+    void createPerson() {
+        
         EntityManager em = emf.createEntityManager();
-        try{
-        Query q1 = em.createNativeQuery("SELECT * FROM person WHERE phone_number = ?");
-            List<RenameMeDTO> personList =  q1.getResultList();
-            System.out.println("this is the phone number: " + personList);
+
+        try {
+            em.getTransaction().begin();
+            Query q = em.createNativeQuery("INSERT INTO person SET first_name = 'admin', last_name = 'admin', fk_hobby = 1, email = 'admin@admin.com'");
+            
+            int createPerson = q.executeUpdate();
+            System.out.println("-------------------------------------------------");
+            System.out.println("You have inserted: " + createPerson);
+
+            em.getTransaction().commit();
+
         } finally {
-            System.out.println("Something went wrong...");
             em.close();
         }
     }
     
-//    @Test
-//    public Person createPersonTest(RenameMeDTO rm) {
-//
-//        EntityManager em = emf.createEntityManager();
-//        
-//        try{
-//        Query q1 = em.createNativeQuery("INSERT INTO person SET email = ?, first_name = ?, last_name = ?");
-//            List<RenameMeDTO> personList =  q1.getResultList();
-//        for (RenameMeDTO p: personList) {
-//            System.out.println("This is the number that belongs to this person: " + personList);
-//        } 
-//           
-//        } finally {
-//             em.close();
-//        }
-//        
-//        return null;
-//    }
-
-
-
     @Test
-    public void testAFacadeMethod() throws Exception {
-        assertEquals("admin", facade.getPerson(123456), "Expect firstname = Admin");
-        assertEquals(2, facade.getPerson(123456));
+    void editPerson() {
+        
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            Query q = em.createNativeQuery("UPDATE person SET email = 'hello@world.com', first_name = 'hello', last_name = 'world' WHERE id = 100");
+            
+            int createPerson = q.executeUpdate();
+            System.out.println("-------------------------------------------------");
+            System.out.println("You have inserted: " + createPerson);
+
+            em.getTransaction().commit();
+
+        } finally {
+            em.close();
+        }
     }
 
-   
+    @Test
+    void getPerson() {
+        
+        EntityManager em = emf.createEntityManager();
 
+        try {
+            em.getTransaction().begin();
+            Query q = em.createNativeQuery("SELECT first_name FROM person INNER JOIN phone WHERE number = 1234");
+            
+            int createPerson = q.executeUpdate();
+            System.out.println("-------------------------------------------------");
+            System.out.println("You have inserted: " + createPerson);
+
+            em.getTransaction().commit();
+
+        } finally {
+            em.close();
+        }
+    }
+
+    @Test
+    void getHobbyByNumbers() {
+        
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            Query q = em.createNativeQuery("SELECT COUNT(name) FROM person INNER JOIN hobby WHERE hobby_id = 1");
+            
+            int createPerson = q.executeUpdate();
+            System.out.println("-------------------------------------------------");
+            System.out.println("You have inserted: " + createPerson);
+
+            em.getTransaction().commit();
+
+        } finally {
+            em.close();
+        }
+    }
+
+    @Test
+    void getCity() {
+        
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            Query q = em.createNativeQuery("SELECT city_name FROM city WHERE zip_code = 2450");
+            
+            int createPerson = q.executeUpdate();
+            System.out.println("-------------------------------------------------");
+            System.out.println("You have inserted: " + createPerson);
+
+            em.getTransaction().commit();
+
+        } finally {
+            em.close();
+        }
+    }
+
+    @Test
+    void getZipCodes() {
+        
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            Query q = em.createNativeQuery("SELECT zip_code FROM city WHERE country_name = \"Danmark\"");
+            
+            int createPerson = q.executeUpdate();
+            System.out.println("-------------------------------------------------");
+            System.out.println("You have inserted: " + createPerson);
+
+            em.getTransaction().commit();
+
+        } finally {
+            em.close();
+        }
+    }
+
+    @Test
+    void getHobbyByPersons() {
+        
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            Query q = em.createNativeQuery("SELECT first_name FROM person INNER JOIN hobby WHERE hobby_id = 100");
+            
+            int createPerson = q.executeUpdate();
+            System.out.println("-------------------------------------------------");
+            System.out.println("You have inserted: " + createPerson);
+
+            em.getTransaction().commit();
+
+        } finally {
+            em.close();
+        }
+    }
+    
+    @Test
+    public static void main(String[] args) {
+        emf = EMF_Creator.createEntityManagerFactory();
+        FacadeExample fe = getFacadeExample(emf);
+        fe.editPerson(); // edit
+        fe.getPerson(); // getPerson
+        fe.getHobbyByNumbers(); // getHobbyByNumbers
+        fe.getCity(); // getCity
+        fe.getZipCodes(); // getZipCodes
+        fe.getHobbyByPersons(); // getHobbyByPersons
+        fe.createPerson(); // createPerson
+    }
 
 
 }
