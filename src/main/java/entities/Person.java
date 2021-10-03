@@ -15,6 +15,10 @@ public class Person {
         this.phoneNumber = phoneNumber;
     }
 
+
+
+
+
     public int getPhoneNumber() {
         return phoneNumber;
     }
@@ -23,11 +27,7 @@ public class Person {
         this.phoneNumber = phoneNumber;
     }
     
-    
-    
-    
-    
-      
+         
     public int getId() {
         return id;
     }
@@ -59,4 +59,6 @@ public class Person {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+
 }
