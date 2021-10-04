@@ -13,13 +13,18 @@ import javax.persistence.Id;
 
 /**
  *
+<<<<<<< HEAD
  * @author Christoffer
+=======
+ * @author danielpedersen
+>>>>>>> edff1c8c0671cec7a9ce7ec1d3c094cbd1eefe5c
  */
 @Entity
 public class PhoneEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+<<<<<<< HEAD
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long phone_id;
     private int number; 
@@ -69,4 +74,21 @@ public class PhoneEntity implements Serializable {
     }
 
 
+=======
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private int number;
+    private String description;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+   
+    
+>>>>>>> edff1c8c0671cec7a9ce7ec1d3c094cbd1eefe5c
 }

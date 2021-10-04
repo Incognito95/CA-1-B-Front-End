@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 /**
@@ -27,8 +28,8 @@ public class HobbyEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    
-    @ManyToMany(mappedBy = "hobbies", cascade = CascadeType.PERSIST)
+ 
+    @ManyToMany
     private List<PersonEntity> people;
 
     public HobbyEntity() {
