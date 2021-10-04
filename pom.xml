@@ -129,9 +129,9 @@
                 <!-- Remove this! Inserted due to error:
                 Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.21.0:test (default-test) on project devops-starter: There are test failures.
                 Unable to build project unless the test failures are ignored. -->
-                <configuration>
+                <!--<configuration>
                 <testFailureIgnore>true</testFailureIgnore>
-                </configuration>
+                </configuration>-->
                 <dependencies>
                     <dependency>
                         <groupId>org.junit.platform</groupId>
