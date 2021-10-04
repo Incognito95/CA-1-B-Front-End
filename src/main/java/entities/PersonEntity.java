@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 /**
@@ -28,6 +29,7 @@ public class PersonEntity implements Serializable {
     private Long id;
     private String firstName;
     
+    
     @ManyToMany(mappedBy = "people", cascade = CascadeType.PERSIST)
     private List<HobbyEntity> hobbies;
 
@@ -35,11 +37,15 @@ public class PersonEntity implements Serializable {
     }
 
 
-    public void addHobby(HobbyEntity name) {
+    public void SearchPeopleThatHaveAGivenHobby(HobbyEntity name) {
         if (name != null) {
             this.hobbies.add(name); // adding hobby to list
             name.getPeople().add(this); // person
         }
+    }
+    
+    public void CreatePersonToSaveDataIntoDatabase() {
+        
     }
     
 
